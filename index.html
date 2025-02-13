@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Счётчик кликов</title>
+    <link rel="stylesheet" href="./css.css">
+    
+</head>
+<body>
+    <!-- задача 1 -->
+    <button id="clickButton">Кликни меня</button>
+    <p>Количество кликов: <span id="counter">0</span></p>
+    <p id="message" style="color: red; display: none;">Вы достигли максимального количества кликов!</p>
+    
+    <script>
+        let count = 0;
+        const button = document.getElementById("clickButton");
+        const counter = document.getElementById("counter");
+        const message = document.getElementById("message");
+
+        button.addEventListener("click", function() {
+            count++;
+            counter.textContent = count;
+            if (count >= 15) {
+                button.disabled = true;
+                message.style.display = "block";
+            }
+        });
+    </script>
+
+     <!-- задача 2 -->
+     <div id="timer">10</div>
+     <button onclick="resetTimer()">Сбросить таймер</button>
+ 
+     <script>
+         let timeLeft = 10;
+         let timerElement = document.getElementById('timer');
+         let timerInterval;
+ 
+         function startTimer() {
+             clearInterval(timerInterval); 
+             timerInterval = setInterval(function () {
+                 if (timeLeft > 0) {
+                     timerElement.textContent = timeLeft;
+                     timeLeft--;
+                 } else {
+                     clearInterval(timerInterval);
+                     timerElement.textContent = "Время вышло!";
+                 }
+             }, 1000);
+         }
+ 
+         function resetTimer() {
+             timeLeft = 10;
+             timerElement.textContent = timeLeft;
+             startTimer();
+         }
+ 
+     </script>
+     <!-- задача 3 -->
+     <div class="timer2" id="timer2">0</div>
+     <button onclick="startTimer2()">Старт</button>
+     <button onclick="stopTimer2()">Стоп</button>
+     <button onclick="resetTimer2()">Сброс</button>
+ 
+     <script>
+         let timer2;
+         let seconds = 0;
+         let isRunning = false;
+ 
+         function startTimer2() {
+             if (!isRunning) {
+                 isRunning = true;
+                 timer = setInterval(() => {
+                     seconds++;
+                     document.getElementById("timer2").textContent = seconds;
+                 }, 1000);
+             }
+         }
+ 
+         function stopTimer2() {
+             clearInterval(time2);
+             isRunning = false;
+         }
+ 
+         function resetTimer2() {
+             clearInterval(timer2);
+             seconds = 0;
+             document.getElementById("timer").textContent = seconds;
+             isRunning = false;
+         }
+     </script>
+</body>
+</html>
